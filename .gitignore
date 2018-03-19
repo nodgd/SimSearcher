@@ -1,0 +1,9 @@
+bin/*
+obj/*
+SimSearcher.layout
+SimSearcher.depend
+*.zip
+*.rar
+*.pdf
+*.docx
+*.exe
