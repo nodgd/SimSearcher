@@ -29,12 +29,12 @@ void GramSet::clear(GramSetNode * cur) {
 }
 
 void GramSet::printVisitor(GramSetNode * cur, char * gram, int gramLen) {
-    LineSet * lineSet = cur -> getLineSet();
+    std::vector < int > * lineSet = cur -> getLineSet();
     if (lineSet != NULL) {
-        int n = lineSet -> getSize();
+        int n = lineSet -> size();
         printf("%s:{", gram);
         for (int i = 0; i < n; i ++) {
-            printf("%d,", lineSet -> getLineById(i));
+            printf("%d,", lineSet -> operator [] (i));
         }
         printf("}\n");
     }
@@ -56,7 +56,21 @@ void GramSet::insertGram(const std::string & gram, int lineId) {
     for (int i = 0; i < (int) gram.length(); i ++) {
         cur = cur -> getOrCreateSonByAscii(gram[i]);
     }
-    cur -> getOrCreateLineSet() -> insertLine(lineId);
+    std::vector < int > * lineSet = cur -> getOrCreateLineSet();
+    if (lineSet -> size() == 0 || lineSet -> back() != lineId) {
+        lineSet -> push_back(lineId);
+    }
+}
+
+std::vector < int > * GramSet::getLineSet(const std::string & gram) {
+    GramSetNode * cur = root;
+    for (int i = 0; i < (int) gram.length(); i ++) {
+        cur = cur -> getSonByAscii(gram[i]);
+        if (cur == NULL) {
+            return NULL;
+        }
+    }
+    return cur -> getLineSet();
 }
 
 void GramSet::print() {

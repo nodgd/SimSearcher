@@ -5,7 +5,7 @@
 
 /**
  *  对于每个Gram存储包含它的所有行的编号集合。
- *  现在只是一个有序的std::vector，以后可能会搞点别的。
+ *  其实就是个std::vector < int >。
  */
 class LineSet {
     
@@ -42,6 +42,17 @@ public:
      */
     int getLineById(int i);
     
+    /*
+     *  函数：getAll
+     *  功能：返回合并过程中的类型
+     */
+    void getAll(std::vector < int > & lineList_);
+    
+public:
+    /*
+     *  函数：cmpPointer
+     *  功能：调用std::sort时，按集合由小到大排序
+     */
+    static bool cmpPointer(const LineSet * a, const LineSet * b);
 };
-
 #endif // LINE_SET_H_

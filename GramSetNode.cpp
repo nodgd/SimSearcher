@@ -25,7 +25,11 @@ GramSetNode * GramSetNode::getSonById(int i) {
 }
 
 GramSetNode * GramSetNode::getSonByAscii(char ch) {
-    return son[asciiId[(int) ch]];
+    if (asciiId[(int) ch] == -1) {
+        return NULL;
+    } else {
+        return son[asciiId[(int) ch]];
+    }
 }
 
 GramSetNode * GramSetNode::getOrCreateSonByAscii(char ch) {
@@ -35,13 +39,13 @@ GramSetNode * GramSetNode::getOrCreateSonByAscii(char ch) {
     return son[asciiId[(int) ch]];
 }
 
-LineSet * GramSetNode::getLineSet() {
+std::vector < int > * GramSetNode::getLineSet() {
     return lineSet;
 }
 
-LineSet * GramSetNode::getOrCreateLineSet() {
+std::vector < int > * GramSetNode::getOrCreateLineSet() {
     if (lineSet == NULL) {
-        lineSet = new LineSet();
+        lineSet = new std::vector < int > ();
     }
     return lineSet;
 }

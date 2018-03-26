@@ -1,3 +1,5 @@
+#include <cstring>
+
 #include "LineSet.h"
 
 LineSet::LineSet(){
@@ -16,4 +18,14 @@ int LineSet::getSize() {
 
 int LineSet::getLineById(int i) {
     return lineList[i];
+}
+
+void LineSet::getAll(std::vector < int > & lineList_) {
+    lineList_ = lineList;
+}
+
+bool LineSet::cmpPointer(const LineSet * a, const LineSet * b) {
+    int aSize = a == NULL ? 0 : a -> lineList.size();
+    int bSize = b == NULL ? 0 : b -> lineList.size();
+    return aSize < bSize;
 }

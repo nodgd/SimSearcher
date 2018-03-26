@@ -62,7 +62,7 @@ private:
     void createEdIndex();
 	
 public:
-    ///外部调用的函数
+    ///构建索引
     /*
      *  函数：createIndex
      *  功能：建立索引
@@ -75,11 +75,47 @@ public:
      */
 	int searchJaccard(const char * query, double threshold, std::vector < std::pair < unsigned, double > > & result);
 	
+private:
+    ///编辑距离查询时用到的函数
+    /*
+     *  函数：getEdLineSetList
+     *  功能：根据编辑距离的查询方法，抓出所有gram的非空的lineSet，并由小到大排序
+     */
+    void getEdLineSetList(const std::string & query, std::vector < std::vector < int > * > & lineSetList);
+    
+    /*
+     *  函数：mergeEdLineSet
+     *  功能：用乱七八糟的算法合并这些lineSet，合并结果已经排好序
+     */
+    void mergeEdLineSet(const std::vector < std::vector < int > * > & lineSetList, int minOccur, std::vector < int > & mergeResult);
+    
+    /*
+     *  函数：calculateEd
+     *  功能：计算编辑距离，如果编辑距离显然大于阈值就不算了，返回阈值+1
+     */
+    int calculateEd(const std::string & a, const std::string & b, int th);
+    
+    /*
+     *  函数：testEdAllInput
+     *  功能：暴力检验所有输入数据
+     */
+    void testEdAllInput(const std::string & query, int th, std::vector < std::pair < unsigned, unsigned > > & result);
+    
+    /*
+     *  函数：testEdMergeResult
+     *  功能：暴力检验筛选结果
+     */
+    void testEdMergeResult(const std::string & query, int th, const std::vector < int > & mergeResult, std::vector < std::pair < unsigned, unsigned > > & result);
+	
+public:
+    ///编辑距离查询
 	/*
      *  函数：searchED
      *  功能：查询ED
 	 */
-	int searchED(const char * query, unsigned threshold, std::vector < std::pair < unsigned, unsigned > > & result);
+	int searchED(const char * query_, unsigned threshold, std::vector < std::pair < unsigned, unsigned > > & result);
 };
+
+bool cmpVectorIntPointer(const std::vector < int > * a, const std::vector < int > * b);
 
 #endif // SIM_SEARCHER_H_

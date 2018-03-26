@@ -1,7 +1,7 @@
 #ifndef GRAM_SET_NODE_H_
 #define GRAM_SET_NODE_H_
 
-#include "LineSet.h"
+#include <vector>
 
 /**
  *  Gram字典树的每个节点，需要先调用init函数。
@@ -19,7 +19,7 @@ private:
     //子节点列表
     GramSetNode ** son;
     //包含当前节点表示的gram的行集合
-    LineSet * lineSet;
+    std::vector < int > * lineSet;
     
 public:
     /*
@@ -55,13 +55,13 @@ public:
      *  函数：getLineSet
      *  功能：获取行集合
      */
-    LineSet * getLineSet();
+    std::vector < int > * getLineSet();
     
     /*
      *  函数：getOrCreateLineSet
      *  功能：获取或创建行集合
      */
-    LineSet * getOrCreateLineSet();
+    std::vector < int > * getOrCreateLineSet();
     
 public:
     /*

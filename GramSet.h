@@ -53,6 +53,12 @@ public:
     void insertGram(const std::string & gram, int lineId);
     
     /*
+     *  函数：getLineSet
+     *  功能：查询一个gram的行编号集合，如果没有就返回NULL
+     */
+    std::vector < int > * getLineSet(const std::string & gram);
+    
+    /*
      *  函数：print
      *  功能：打印到屏幕，方便Debug
      */
