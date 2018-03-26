@@ -37,6 +37,8 @@
 		<Unit filename="GramSet.h" />
 		<Unit filename="GramSetNode.cpp" />
 		<Unit filename="GramSetNode.h" />
+		<Unit filename="LineSet.cpp" />
+		<Unit filename="LineSet.h" />
 		<Unit filename="SimSearcher.cpp" />
 		<Unit filename="SimSearcher.h" />
 		<Unit filename="main.cpp" />

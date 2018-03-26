@@ -1,23 +1,15 @@
 #ifndef SIM_SEARCHER_H_
 #define SIM_SEARCHER_H_
 
-#include <cstdio>
-#include <cstdlib>
-#include <cstring>
 #include <vector>
 #include <string>
 
-#include "Const.h"
 #include "GramSet.h"
 
-const int SUCCESS = 0;
-const int FAILURE = 1;
-
+/**
+ *  近似查询主类。
+ */
 class SimSearcher {
-    
-public:
-    //每一行的最大长度
-    static const int MAX_LENGTH = 256;
     
 private:
     //算法要求Q-grams
@@ -32,7 +24,10 @@ private:
     //字符集的大小
     int Z;
     //字符对应的数值编号，范围[0, Z - 1]
-    int asciiId[MAX_ASCII + 4];
+    int * asciiId;
+    
+    //ED距离的数据结构
+    GramSet * edGramSet;
     
     
 public:

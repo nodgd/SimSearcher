@@ -1,8 +1,14 @@
 #ifndef GRAM_SET_H_
 #define GRAM_SET_H_
 
+#include <string>
+
 #include "GramSetNode.h"
 
+/**
+ *  所有Gram的字典树，需要先调用init函数。
+ *  每个Gram的末尾节点有一个LineSet，存带有这个Gram的所有行的编号。
+ */
 class GramSet {
     
 private:
@@ -26,6 +32,31 @@ public:
      */
     virtual ~GramSet();
 
+private:
+    /*
+     *  函数：clear
+     *  功能：清理cur子树下的所有节点
+     */
+    void clear(GramSetNode * cur);
+    
+    /*
+     *  函数：printVisitor
+     *  功能：打印到屏幕时的递归访问
+     */
+    void printVisitor(GramSetNode * cur, char * gram, int gramLen);
+    
+public:
+    /*
+     *  函数：insertGram
+     *  功能：插入一个gram
+     */
+    void insertGram(const std::string & gram, int lineId);
+    
+    /*
+     *  函数：print
+     *  功能：打印到屏幕，方便Debug
+     */
+    void print();
     
 public:
     /*
